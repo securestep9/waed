@@ -1,0 +1,492 @@
+#!/bin/bash
+case "$1" in
+start)
+         if [ "$2" = "1" ]
+         then
+               echo "Starting Application"
+               sleep 10
+               docker run -d -p 9999:8080 -i   --name app1 java > /tmp/x 2>&1
+               docker exec -d app1 sh /tomcat/bin/startup.sh > /tmp/x 2>&1
+               docker exec -d app1 service mysql start > /tmp/x 2>&1
+               echo "Sucessfully Started"
+               echo "App ID: 1 -- Custom JAVA Application"
+               echo "App ID: 1 -- JSPmyadmin"
+               echo "App ID: 1 -- Bodgeit Application"
+         elif [ "$2" = "2" ]
+         then
+               echo "Starting Application"
+               sleep 10
+               docker run -d -p 8089:80 -i --name app2 sql_inj_full  > /tmp/x 2>&1
+               docker exec -d app2 service apache2 start > /tmp/x 2>&1
+               docker exec -d app2 service mysql start > /tmp/x 2>&1
+               echo "Sucessfully Started"
+               echo "App ID: 2 -- SQL Injection Series"
+         elif [ "$2" = "3" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8081:80 -i --name app3 multi  > /tmp/x 2>&1
+              docker exec -d app3 service apache2 start > /tmp/x 2>&1
+              docker exec -d app3 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 3 -- Mutillidae Application"
+         elif [ "$2" = "4" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8082:80 -i --name app4 wackopicko  > /tmp/x 2>&1 
+              docker exec -d app4 service apache2 start > /tmp/x 2>&1
+              docker exec -d app4 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 4 -- Wackopicko Application"
+         elif [ "$2" = "5" ]
+         then 
+              echo "Starting Application"
+              sleep 10
+              docker run --name app5 -d -p 9090:9090 -p 5222:5222 -p 7777:7777 openfire > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 5 -- Openfire Application"
+         elif [ "$2" = "6" ]
+         then 
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8083:80  --name app6 webgoat  > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 6 -- Webgoat Application" 
+         elif [ "$2" = "7" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8084:80 -t -i  --name app7 owasp_bricks /bin/bash > /tmp/x 2>&1
+              docker exec -d app7 /etc/init.d/apache2 start
+              docker exec -d app7 /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 7 -- Owsap Bricks Application"
+         elif [ "$2" = "8" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run  -d -p 8085:80 -t -i --name app8 sql_postgres /bin/bash > /tmp/x 2>&1
+              docker exec -d app8 /etc/init.d/apache2 start
+              docker exec -d app8 /etc/init.d/postgres start
+              echo "Sucessfully Started"
+              echo "App ID: 8 --  Sql Postgres Database Applcation"
+         elif [ "$2" = "9" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run  -d -p 8086:80 -t -i --name app9 xss_mysql_new /bin/bash  > /tmp/x 2>&1
+              docker exec -d app9 /etc/init.d/apache2 start
+              docker exec -d app9 /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 9 --  Sql Mysql Database Applcation"
+         elif [ "$2" = "10" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run  -d -p 8087:80 -t -i --name appA xss_sql_web_1 /bin/bash > /tmp/x 2>&1
+              docker exec -d appA /etc/init.d/apache2 start
+              docker exec -d appA /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 10 -- XSS and Sql Series"
+         elif  [ "$2" = "11" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8088:80 -p 3306:3306 -e MYSQL_PASS="root" --name appB dvwa  > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 11 -- DVWA Application"
+         elif  [ "$2" = "12" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d  -p 80:80 -i -t --name appC php_vul /bin/bash > /tmp/x 2>&1
+              docker exec -d appC /etc/init.d/apache2 start
+              docker exec -d appC /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 12 -- MYbb Application"
+              echo "App ID: 12 -- Refbase Application"
+              echo "App ID: 12 -- Zeuscart Application"
+         elif  [ "$2" = "13" ]
+         then
+              echo "Starting Application"
+              sleep 10
+              docker run -d -p 8090:80 -i -t --name appD php_vul_1 /bin/bash > /tmp/x 2>&1
+              docker exec -d appD /etc/init.d/apache2 start
+              docker exec -d appD mysqld &
+              echo "Sucessfully Started"
+              echo "App ID: 13 -- 2cmoon Application"
+              echo "App ID: 13 -- PHPNuke Application"
+         else
+              echo "Please enter the correct  name"
+         fi
+         ;;
+
+stop)
+         if [ "$2" = "1" ]
+         then 
+              echo "Stopping Application"
+              sleep 10
+              docker stop app1 > /tmp/x 2>&1
+              docker rm app1  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [ "$2" = "2" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app2 > /tmp/x 2>&1
+              docker rm app2  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "3" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app3 > /tmp/x 2>&1
+              docker rm app3  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "4" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app4 > /tmp/x 2>&1
+              docker rm app4  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "5" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app5 > /tmp/x 2>&1
+              docker rm app5  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "6" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app6 > /tmp/x 2>&1
+              docker rm app6  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "7" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app7 > /tmp/x 2>&1
+              docker rm app7  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "8" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app8 > /tmp/x 2>&1
+              docker rm app8  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "9" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop app9 > /tmp/x 2>&1
+              docker rm app9  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "10" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop appA > /tmp/x 2>&1
+              docker rm appA  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "11" ]
+         then
+              echo "Stopping Application"
+              sleep 10
+              docker stop appB > /tmp/x 2>&1
+              docker rm appB  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "12" ]
+         then 
+              echo "Stopping Application"
+              sleep 10
+              docker stop appC > /tmp/x 2>&1
+              docker rm appC  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         elif [  "$2" = "13" ]
+         then 
+              echo "Stopping Application"
+              sleep 10
+              docker stop appD > /tmp/x 2>&1
+              docker rm appD  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+         else
+               echo "Please enter the correct  name"
+         fi
+         ;;
+
+restore)
+         if [ "$2" = "1" ]
+         then 
+              echo "Stopping Application"
+              sleep 6
+              docker stop app1 > /tmp/x 2>&1
+              docker rm app1  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 9999:8080 -i   --name app1 java > /tmp/x 2>&1
+              docker exec -d app1 sh /tomcat/bin/startup.sh > /tmp/x 2>&1
+              docker exec -d app1 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 1 -- Custom JAVA Application"
+              echo "App ID: 1 -- JSPmyadmin"
+              echo "App ID: 1 -- Bodgeit Application"
+
+         elif [  "$2" = "2" ] 
+         then 
+              echo "Stopping Application"
+              sleep 6
+              docker stop app2 > /tmp/x 2>&1
+              docker rm app2  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8089:80 -i --name app2 sql_inj_full  > /tmp/x 2>&1
+              docker exec -d app2 service apache2 start > /tmp/x 2>&1
+              docker exec -d app2 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 2 -- SQL Injection Series"
+         elif [  "$2" = "3" ]          
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app3 > /tmp/x 2>&1
+              docker rm app3  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8081:80 -i --name app3 multi  > /tmp/x 2>&1
+              docker exec -d app3 service apache2 start > /tmp/x 2>&1
+              docker exec -d app3 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 3 -- Mutillidae Application"
+         elif [ "$2" = "4" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app4 > /tmp/x 2>&1
+              docker rm app4  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8082:80 -i --name app4 wackopicko  > /tmp/x 2>&1 
+              docker exec -d app4 service apache2 start > /tmp/x 2>&1
+              docker exec -d app4 service mysql start > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 4 -- Wackopicko Application"
+         elif [ "$2" = "5" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app5 > /tmp/x 2>&1
+              docker rm app5  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application" 
+              sleep 6
+              docker run --name app5 -d -p 9090:9090 -p 5222:5222 -p 7777:7777 openfire > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 5 -- Openfire Application"
+         elif [ "$2" = "6" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app6 > /tmp/x 2>&1
+              docker rm app6  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8083:80  --name app6 webgoat  > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 6 -- Webgoat Application"
+         elif [ "$2" = "7" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app7 > /tmp/x 2>&1
+              docker rm app7  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8084:80 -t -i  --name app7 owasp_bricks /bin/bash > /tmp/x 2>&1
+              docker exec -d app7 /etc/init.d/apache2 start
+              docker exec -d app7 /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 7 -- Owsap Bricks Application"
+         elif [ "$2" = "8" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app8 > /tmp/x 2>&1
+              docker rm app8  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run  -d -p 8085:80 -t -i --name app8 sql_postgres /bin/bash > /tmp/x 2>&1
+              docker exec -d app8 /etc/init.d/apache2 start
+              docker exec -d app8 /etc/init.d/postgres start
+              echo "Sucessfully Started"
+              echo "App ID: 8 --  Sql Postgres Database Applcation"
+         elif [ "$2" = "9" ]  
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop app9 > /tmp/x 2>&1
+              docker rm app9  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run  -d -p 8086:80 -t -i --name app9 xss_mysql_new /bin/bash  > /tmp/x 2>&1
+              docker exec -d app9 /etc/init.d/apache2 start
+              docker exec -d app9 /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 9 --  Sql Mysql Database Applcation"
+         elif [ "$2" = "10" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop appA > /tmp/x 2>&1
+              docker rm appA  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run  -d -p 8087:80 -t -i --name appA xss_sql_web_1 /bin/bash > /tmp/x 2>&1
+              docker exec -d appA /etc/init.d/apache2 start
+              docker exec -d appA /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 10 -- XSS and Sql Series"
+         elif [ "$2" = "11" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop appB > /tmp/x 2>&1
+              docker rm appB  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8088:80 -p 3306:3306 -e MYSQL_PASS="root" --name appB dvwa  > /tmp/x 2>&1
+              echo "Sucessfully Started"
+              echo "App ID: 12 -- DVWA Application"
+         elif [  "$2" = "12" ]
+         then 
+              echo "Stopping Application"
+              sleep 6
+              docker stop appC > /tmp/x 2>&1
+              docker rm appC  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8089:80 -i -t --name appC php_vul /bin/bash > /tmp/x 2>&1
+              docker exec -d appC /etc/init.d/apache2 start
+              docker exec -d appC /etc/init.d/mysql start
+              echo "Sucessfully Started"
+              echo "App ID: 12 -- MYbb Application"
+              echo "App ID: 12 -- Refbase Application"
+              echo "App ID: 12 -- Zeuscart Application"
+         elif [  "$2" = "13" ]
+         then
+              echo "Stopping Application"
+              sleep 6
+              docker stop appD > /tmp/x 2>&1
+              docker rm appD  > /tmp/x 2>&1
+              echo "Sucessfully Stopped"
+              echo "Starting Application"
+              sleep 6
+              docker run -d -p 8090:80 -i -t --name appD php_vul_1 /bin/bash > /tmp/x 2>&1
+              docker exec -d appD /etc/init.d/apache2 start
+              docker exec -d appD mysqld &
+              echo "Sucessfully Started"
+              echo "App ID: 13 -- 2cmoon Application"
+              echo "App ID: 13 -- PHPNuke Application"
+         else
+              echo "please enter the correct  name"         
+         fi
+         ;;
+status)
+docker ps   | awk -F'app' '{print $2}' | sort  > /tmp/apps.txt
+FILE=/tmp/apps.txt
+echo "The WAED Apps are running:"
+
+while read line; do
+
+     if echo $line | grep -q "1"; then
+      echo "App ID: 1 -- Custom JAVA Application"
+      echo "App ID: 1 -- Bodgeit Application"
+      echo "App ID: 1 -- JSP-Myadmin "
+     fi
+
+     if echo $line | grep -q "2"; then
+      echo "App ID: 2 -- Sql Injection Series"
+     fi
+
+
+     if echo $line | grep -q "3"; then
+     echo "App ID: 3 -- Mutillidae Application"
+     fi
+
+     if echo $line | grep -q "4"; then
+     echo "App ID: 4 -- Wackopicko Application"
+     fi
+
+     if echo $line | grep -q "5"; then
+     echo "App ID: 5 -- Openfire Application"
+     fi
+
+     if echo $line | grep -q "6"; then
+     echo "App ID: 6 -- Webgoat Application"
+     fi
+
+     if echo $line | grep -q "7"; then
+     echo "App ID: 7 -- Owsap Bricks Application"
+     fi
+          if echo $line | grep -q "8"; then
+     echo "App ID: 8 --  Sql Postgres Database Applcation"
+     fi
+
+     if echo $line | grep -q "9"; then
+     echo "App ID: 9 --  Sql Mysql Database Applcation"
+     fi
+
+     if echo $line | grep -q "A"; then
+     echo "App ID: 10 -- XSS and Sql Series"
+     fi
+
+     if echo $line | grep -q "B"; then
+     echo "App ID: 11 -- DVWA Application"
+     fi
+
+     if echo $line | grep -q "C"; then
+     echo "App ID: 12 -- MYbb Application"
+     echo "App ID: 12 -- Refbase Application"
+     echo "App ID: 12 -- Zeuscart Application"
+     fi
+
+     if echo $line | grep -q "D"; then
+     echo "App ID: 13 -- 2cmoon  Application"
+     echo "App ID: 13 -- PHPNuke Application"
+     fi
+done < $FILE
+
+         ;; 
+
+clean)
+echo "Cleaning all Application"
+docker stop `docker ps -qa` > /tmp/x 2>&1
+docker rm `docker ps -qa`   > /tmp/x 2>&1
+        ;;
+help)
+echo " To start apps: waed start application id : Ex: waed start 1"
+echo " To stop apps: waed stop applicatiosn id : Ex: waed stop 1"
+echo " To restore apps: waed restore application id : Ex: waed restore 1"
+echo " To clean all apps:  waed clean"
+
+        ;;
+*)
+         echo "Usage: $0 (start|stop|restore|status|clean|help)"
+
+;;
+esac

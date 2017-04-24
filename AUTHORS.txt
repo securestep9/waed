@@ -1,0 +1,11 @@
+===============================================
+This file identifies Web Application and Exploitation Distribution authors. 
+
+All lists are alphabetical. 
+===============================================
+
+WAED  1.1:
+------------
+
+Rajganesh Pandurangan
+
