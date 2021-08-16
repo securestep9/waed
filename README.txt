@@ -11,7 +11,7 @@ The majority of the applications in WAED runs in its container with a dedicated 
 ftp://gator3143.hostgator.com/waed.iso (or) https://drive.google.com/open?id=0B_GgpShRlRa2WElnQ2VTUmxlRjA
 </del>
 
-Woring waed.iso download location:
+Working waed.iso download location:
 https://e.pcloud.link/publink/show?code=XZ2lC0ZwrIK6o8vVAXooOYnHOdoMuti9mkV
 
 
@@ -20,9 +20,8 @@ Download
 
 If you want to give WAED a try, you can download the ISO images from the following url:
 
-    ftp://gator3143.hostgator.com/waed.iso (or) https://drive.google.com/open?id=0B_GgpShRlRa2WElnQ2VTUmxlRjA
     
-
+https://e.pcloud.link/publink/show?code=XZ2lC0ZwrIK6o8vVAXooOYnHOdoMuti9mkV
 
 
 Contact
@@ -31,7 +30,7 @@ For information or requests, contact:
 
 WAED Distro
 
-Web: https://drive.google.com/open?id=0B_GgpShRlRa2WElnQ2VTUmxlRjA
+https://e.pcloud.link/publink/show?code=XZ2lC0ZwrIK6o8vVAXooOYnHOdoMuti9mkV
      
      
 Email: prajganesh@gmail.com
