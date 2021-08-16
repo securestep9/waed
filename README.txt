@@ -7,9 +7,12 @@ The WAED is a lightweight linux distribution based on Debian 8. WAED is pre-conf
 The majority of the applications in WAED runs in its container with a dedicated database, file system, and web server. Therefore, It’s easy to scale and deploy more applications as this distro matures. It’s easy to start, stop and restore applications without having to reinstall, which makes it a great tool for learning.
 
 
-The Web Application and Exploitation distribution is available from: 
+<del>The Web Application and Exploitation distribution is available from: 
 ftp://gator3143.hostgator.com/waed.iso (or) https://drive.google.com/open?id=0B_GgpShRlRa2WElnQ2VTUmxlRjA
+</del>
 
+Woring waed.iso download location:
+https://e.pcloud.link/publink/show?code=XZ2lC0ZwrIK6o8vVAXooOYnHOdoMuti9mkV
 
 
 Download
